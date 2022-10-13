@@ -8,7 +8,7 @@ for (let botao of btnNumeros){
 }
 function clica_numero(event){
     if (isNaN(visor.innerHTML) === true)
-        visor.innerHTML = visor.innerHTML + event.target.innerHTML;
+        visor.innerHTML = event.target.innerHTML;
     else
         visor.innerHTML = visor.innerHTML + event.target.innerHTML;
 }
@@ -39,16 +39,16 @@ function limpa_visor(event){
 
 let botaoIgual = document.getElementById('botao-igual')
 botaoIgual.addEventListener('click', calcula_resultado);
-
+let resultado = null;
 function calcula_resultado(event) {
     if(valor_salvo != null && operador_salvo != null && isNaN(visor.innerHTML) === false){
-        let resultado = executaOp(valorSalvo, operadorSalvo, Number(visor.innerHTML));
+        let resultado = executa_operacao(valor_salvo, operador_salvo, Number(visor.innerHTML));
         visor.innerHTML = resultado;
-        valorSalvo = null;
-        operadorSalvo = null;
+        valor_salvo = null;
+        operador_salvo = null;
     }
 }
-function executaOp(valor1, operador, valor2){
+function executa_operacao(valor1, operador, valor2){
     if (operador === "+"){
          return valor1 + valor2;
     } else if (operador === "-"){
@@ -93,7 +93,7 @@ function pressiona_tecla(event) {
         document.getElementById('divisao').click();
     } else if (event.key === '.'){
         document.getElementById('ponto').click();
-    } else if (event.keyCode === 13){
+    } else if (event.keyCode === '='){
         document.getElementById('botao-igual').click();
     } 
 }
